@@ -1,0 +1,48 @@
+
+####################
+# SQL Database Credentials - Only examples, uncomment as necessary.
+####################
+
+# SQLite
+database:
+    driver: sqlite       # Can be: mysql, postgresql, sqlite
+    dbname: ~/db.sqlite
+
+# Example mySQL
+#database:
+#    driver: mysql
+#    dbname: levis
+#    user: myuser
+#    password: secret_pass
+#    host: localhost
+#    port: 3306
+
+####################
+# SMTP Credentials - Only if sending e-mail via SMTP
+#
+# For Gmail to work, Less Secure Apps must be turned on in Google settings.
+####################
+
+#smtp:
+#    host: smtp.gmail.com
+#    port: 465
+#    is_ssl: 1
+#    user: me@gmail.com
+#    password: secret
+
+####################
+# Configuration
+#
+#    Enter any desired configuration key-value pairs.  Can be
+#    one or two levels deep, and retrived via $app->config($key).
+#
+# For example:
+#    $dbinfo = $app->config('database');    // Returns array
+#    $domain = $app->config('domain_name');    // Returns string
+####################
+
+domain_name: localhost
+enable_javascript: 1
+debug_mode: 1
+
+

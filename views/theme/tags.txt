@@ -1,0 +1,606 @@
+
+/**
+ * <s:boxlist>
+ */
+
+[[boxlisttest]]
+<ul class="boxlist">
+    ~items~
+</ul>
+<h1>Boxlist</h1>
+
+
+
+[[boxlist.item]]
+<li>
+    <a href="~href~">
+        <b>~title~</b><br />
+        ~contents~
+    </a>
+</li>
+
+
+
+/**
+ * <s:form>
+ *
+ * The <form> tag, includes automated placement of action and enctype attributes.
+ */
+[[form]]
+@default(method=POST, class_name=form-inline, id=frmMain)
+
+<form action="~action~" method="~method~" enctype="~enctype~" class="~class_name~" id="~id~" data-parsley-validate="">
+
+/**
+ * <s:form_table> ... </s:form_table>
+ *
+ * Encapsulation component for typical two column form inputs table.
+ */ 
+[[form_table]]
+@default(width=95%, align=left)
+
+<table border="0" class="form_table" style="width: ~width~; align: ~align~;">
+    ~contents~
+</table>
+
+
+/**
+ * <s:ft_twocol> ... </s:ft_twocol>
+ *
+ * A standard two column row within the above <s:form_table, left column 
+ * is the text label, and right column is the form field.
+ */ 
+[[ft_twocol]]
+<tr>
+    <td><label for="~name~">~label~:</label></td>
+    <td><div class="form-group">
+        ~contents~
+    </div></td>
+</tr>
+
+/**
+ * <s:ft_onecol> ... </s:ft_onecol>
+ *
+ * One column row that spans two columns within form table (eg. submit button as bottom row).
+ */ 
+[[ft_onecol]]
+@default(align=left)
+
+<tr>
+    <td colspan="2" align="~align~">~contents~</td>
+</tr>
+
+
+/**
+ * Below are various form fields which should be self-exlamatory by their names.
+ */
+
+[[submit]]
+@default(name=submit, value=submit, label=Submit, size=lg)
+
+<div class="text-left">
+    <button type="submit" name="submit" value="~value~" class="btn btn-primary btn-~size~">~label~</button>
+</div>
+
+
+[[button]]
+@default(label=Submit, size=md)
+
+<a href="~href~" class="btn btn-primary btn-~size~">~label~</a>
+
+
+[[boolean]]
+@required(name)
+@default(value=0)
+
+<div class="radioform">
+    <input type="radio" name="~name~" class="form-control" value="1" ~chk_yes~ /> <span>Yes</span> 
+    <input type="radio" name="~name~" class="form-control" value="0" ~chk_no~ /> <span>No</span> 
+</div>
+
+
+[[select]]
+@required(name)
+@default(required=0, value=)
+
+<select name="~name~" class="form-control" ~width~ ~onchange~>
+    ~options~
+</select>
+
+
+[[form_group]]
+<div class="radioform">
+    ~contents~
+</div>
+
+[[radio]]
+@required(name)
+@default(is_checked=0, label=No Label)
+<input type="radio" name="~name~" value="~value~" class="form-control" ~onclick~ ~chk~> <span>~label~</span>
+
+
+[[checkbox]]
+@required(name)
+@default(is_checked=0)
+<input type="checkbox" name="~name~" value="~value~" class="form-control" ~chk~ ~onclick~> <span>~label~</span><br />
+
+
+[[textbox]]
+@required(name)
+@default(type=text, id=input~name~, value=)
+
+<input type="~type~" name="~name~" value="~value~" class="form-control" id="~id~" ~placeholder~ ~actions~ ~validation~ />
+
+
+[[textarea]]
+@required(name)
+@default(width=500px, height=150px, id=input~name~)
+
+<textarea name="~name~" class="form-control" id="~id~" style="width: 100%" ~placeholder~>~value~</textarea>
+
+[[editor]]
+<textarea name="~name~" class="form-control" id="~name~" style="width: 100%" ~placeholder~>~value~</textarea>
+<script src="/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script>CKEDITOR.replace('~name~');</script>
+
+
+[[phone]]
+@required(name)
+@default(value=)
+
+<div class="form-group">
+    <select name="~name~_country" class="form-control col-lg-2">
+        ~country_code_options~
+    </select> 
+    <input type="text" name="~name~" value="~phone~" class="form-control col-lg-10"  ~placeholder~>
+</div>
+
+
+[[amount]]
+@required(name)
+@default(value=)
+<span style="float: left;">~currency_sign~</span> 
+<input type="text" name="~name~" value="~value~" class="form-control" style="width: 60px; float: left;" ~placeholder~ data-parsley-type="decimal">
+
+
+[[date_selector]]
+@required(name)
+@default(required=0, start_year=1940, end_year=)
+
+<select name="~name~_month" class="form-control" style="width: 120px; float: left;">
+    ~month_options~
+</select> 
+<select name="~name~_day~" class="form-control" style="width: 30px; float: left;">
+    ~day_options~
+</select>, 
+<select name="~name~_year~" class="form-control" style="width: 70px; float: left;">
+    ~year_options~
+</select>
+
+
+[[time_selector]]
+@required(name)
+
+<select name="~name~_hour" class="form-control" style="width: 60px; float: left;">
+    ~hour_options~
+</select> : 
+<select name="~name~_min" class="form-control" style="width: 60px; float: left;">
+    ~minute_options~
+</select>
+
+
+[[date_interval_selector]]
+@required(name)
+@default(add_time=0)
+
+<div class="form-group">
+    <div class="col-lg-8" style="padding-left: 0">
+        <input type="text" name="~name~_length" class="form-control" value="~length~" > 
+    </div>
+    <div class="col-lg-4" style="padding-right: 0">
+        <select name="~name~_period" class="form-control" style="width: 100%" >
+            ~period_options~
+        </select>
+    </div>
+</div>
+
+
+
+/**
+ * <s:box> ... </s:box>
+ * 
+ * Used as a panel / card, and wraps contents into separate container allowing page 
+ * to be broken up into multiple sections with ease.
+ */ 
+[[box]] 
+<div class="panel panel-default">
+    ~box.header~
+    <div class="panel-body">
+        ~contents~
+    </div>
+    ~box.footer~
+
+</div>
+
+[[box.header]]
+@default(title=)
+
+<div class="panel-heading">
+    <span style="border-bottom: 1px solid #333333; margin-bottom: 8px;">
+        <h3>~title~</h3>
+        ~contents~
+    </span>
+</div>
+
+[[box.footer]]
+<div class="panel-footer">
+    ~contents~
+</div>
+
+
+
+/**
+ * <s:input_box> ... </s:input_box>
+ *
+ * Similar to <s:box> although used as a small, lower height box for things 
+ * such as search bars, et al.
+ */
+
+[[input_box]]
+<div class="panel panel-default search_user">
+    <div class="panel-body">
+        ~contents~
+    </div>
+</div>
+
+
+/**
+ * <s:callouts>
+ *
+ * <s:callouts>
+ *
+ * The callouts, or success / error messages placed on the top of pages.  The 
+ * CSS aliases below are what ~css_alias~ value is used depending on the type of messages being displayed.
+ */ 
+[[callouts]]
+
+<div class="alert alert-~css_alias~"><p>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    ~callout.messages~
+</p></div>
+
+
+[[callouts.message]]
+<span><i class="~icon~"></i> ~message~</span><br />
+
+[[callouts.css]]
+{
+    "success": "success", 
+    "error": "danger", 
+    "warning": "warning", 
+    "info": "info"
+}
+
+[[callouts.icon]]
+{
+    "success": "fa fa-check", 
+    "error": "fa fa-ban", 
+    "warning": "fa fa-warning", 
+    "info": "fa fa-info"
+}
+
+
+
+[[callouts.ignore]]
+
+
+
+/**
+ <s:nav_menu>
+ *
+ * Navigation menu
+ */
+
+[[nav.header]]
+<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">~name~</div> <i class="icon-menu" title="~name~"></i></li>
+
+
+[[nav.parent]]
+<li class="nav-item nav-item-submenu">
+    <a href="~url~" class="nav-link">~icon~ <span>~name~</span></a>
+    <ul class="nav nav-group-sub" data-submenu-title="~name~">
+        ~submenus~
+    </ul>
+</li>
+
+
+[[nav.menu]]
+<li class="nav-item"><a href="~url~" class="nav-link">~icon~~name~</a></li>
+
+
+
+/**
+ * <s:tab_control> .. </s:tab_control>
+ *
+ * Within the templates, the inner body will contain <s:tab_page> .. </s:tab_page> tags which are 
+ * looped over for the nav item and actual tab page.
+ */
+[[tab_control]]
+@default(active_tab=1)
+
+<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+        ~nav_items~
+    </ul>
+
+    <div class="tab-content">
+        ~tab_pages~
+    </div>
+</div>
+
+[[tab_control.nav_item]]
+@required(tab_num, name)
+<li class="~active~"><a href="#tab~tab_num~" data-toggle="tab">~name~</a></li>
+
+
+[[tab_control.page]]
+@required(tab_num)
+<div class="tab-pane ~active~" id="tab~tab_num~">
+    ~contents~
+</div>
+
+
+[[tab_control.css_active]]
+active
+
+
+
+/**
+ * <s:data_table> .. </s:data_table>
+ * 
+ * Data tables including optional search bar, pagination, and bottom left button group.
+ */
+
+[[data_table]]
+@default(id=tblMain, has_search=0, search_href=~syrus.uri~, sort_href=~syrus.uri~, pgn_href=~syrus.uri~, current_page=1, total_rows=0, rows_per_page=25, max_items=10, search_label=Search)
+
+<table class="table table-bordered table-striped table-hover" id="~id~">
+    ~contents~
+    ~table.footer~
+</table>
+
+
+[[data_table.search_bar]]
+@default(search_href=~syrus.uri~, search_label=Search)
+<tr>
+    <td style="border-top:1px solid #ccc" colspan="~total_columns~" align="right">
+        <div class="formsearch">
+            <input type="text" name="search_~id~" placeholder="~search_label~..." class="form-control" style="width: 210px;"> 
+            <button href="~search_href~" class="btn btn-primary btn-md"><i class="fa fa-search"></i></button>
+        </div>
+    </td>
+</tr>
+
+
+[[data_table.th]]
+<th class="boxheader"> <span>~name~</span> ~sort_desc~ ~sort_asc~</th>
+
+
+[[data_table.sort_asc]]
+<a href="~sort_href~" border="0" title="Sort Ascending ~col_alias~" class="asc">
+    <i class="fa fa-sort-asc"></i>
+</a>
+
+
+[[data_table.sort_desc]]
+<a href="~sort_href~?sort_col=~col_alias~&sort_dir=desc" border="0" title="Sort Decending ~col_alias~" class="desc">
+    <i class="fa fa-sort-desc"></i>
+</a>
+
+
+/**
+ * The table footer will only be displayed if either:
+ *
+ * 1. The <s:data_table> tag contains a "total_rows" attribute, or
+ * 2. <s:table_buttons> ... </s:table_buttons> are present within the <s:data_table> tag.
+ */ 
+[[data_table.footer]]
+<tfoot><tr>
+    <td colspan="~total_columns~" align="right">
+        ~button_group~
+        ~pagination~
+    </td>
+    </tr></tfoot>
+
+
+
+/**
+ * Pagination
+ */
+[[pagination]]
+@default(id=pgnMain, href=~syrus.uri~, current_page=1, total_rows=0, rows_per_page=25, max_items=10)
+
+<span id="pgnsummary_~id~" style="vertical-align: middle; font-size: 8pt; margin-right: 7px;">
+    <b>~start_row~ - ~end_row~</b> of <b>~total_rows~</b>
+</span>
+
+<ul class="pagination" id="pgn_~id~">
+    ~pagination.items~
+</ul>
+
+
+[[pagination.item]]
+<li style="display: ~display~;"><a href="~href~">~name~</a></li>
+
+[[pagination.active_item]]
+<li class="active"><a>~page~</a></li>
+
+
+/**
+ * <s:dropdown_alert>
+ * <s:dropdown_message>
+ */
+
+[[dropdown.alert]]
+<li class="media">
+    <div class="media-body">
+        <a href="~url~">~message~
+        <div class="text-muted font-size-sm">~time~</div>
+	</a>
+    </div>
+</li>
+
+
+[[dropdown.message]]
+<li class="media">
+    <div class="media-body">
+
+        <div class="media-title">
+            <a href="~url~">
+                <span class="font-weight-semibold">~from~</span>
+                <span class="text-muted float-right font-size-sm">~time~</span>
+            </a>
+        </div>
+
+        <span class="text-muted">~message~</span>
+    </div>
+</li>
+
+
+[[dropdown_messages]]
+
+[[dropdown_alerts]]
+
+/**
+ * <a:breadcrumbs>
+ */
+[[breadcrumbs]]
+<ul class="breadcrumbs">
+    ~breadcrumbs.items~
+</ul>
+
+
+[[breadcrumbs.item]]
+<li><a href="~href~">~name~</a> &gt; </li>
+
+
+[[breadcrumbs.active_item]]
+<li>~name~</li>
+
+
+/**
+ * <s:boxlist>
+ */
+
+[[boxlist]]
+<ul class="boxlist">
+    ~items~
+</ul>
+
+
+
+[[boxlist.item]]
+<li>
+    <a href="~href~">
+        <b>~title~</b><br />
+        ~contents~
+    </a>
+</li>
+
+
+/**
+ * <s:modal>
+ *
+ * A modal / popup box.
+ */
+
+[[modal]]
+@default(title=Unnamed Dialog)
+<div id="modal" class="modal" role="dialog">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <button type="button" class="close" onclick="close_modal();">&times;</button>
+            <h4 class="modal-title" id="modal-title">~title~</h4>
+        </div>
+        <div class="modal-body" id="modal-body">
+            ~contents~
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" onclick="close_modal();">Close</button>
+        </div>
+    </div>
+</div>
+
+
+[[google_analytics]]
+@required(tag_id)
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=~tag_id~"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '~tag_id~');
+</script>
+
+
+/**
+ * <s:dashboard_items>
+ */
+
+[[dashboard]]
+
+<div class="row boxgraf">
+    ~top_items~
+</div>
+
+<div class="panel panel-flat">
+    <a:function alias="display_tabcontrol" tabcontrol="core:dashboard">
+</div>
+
+<div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
+    <div class="sidebar-content">
+        ~right_items~
+    </div>
+</div>
+
+[[dashboard.top_item]]
+<div class="col-lg-4">
+    <div class="~panel_class~">
+        <div class="panel-body">
+
+            <h3 class="no-margin">~contents~</h3>
+                ~title~
+            </div>
+            <div class="text-muted text-size-small">~contents~</div>
+        </div>
+        <div class="container-fluid">
+            <div id="~divid~"></div>
+        </div>
+    </div>
+</div>
+
+
+
+[[dashboard.right_item]]
+<div class="card">
+    <div class="card-header bg-transparent header-elements-inline">
+        <span class="card-title font-weight-semibold">~title~</span>
+    </div>
+    <div class="card-body">
+        <ul class="media-list">
+            <li class="media">
+                <div class="media-body">
+                    ~contents~
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+

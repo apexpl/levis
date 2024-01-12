@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Levis</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e0f2e9; /* Light green background color */
+        }
+        .navbar {
+            background-color: #28a745; /* Green navbar background color */
+        }
+        .navbar a {
+            color: #ffffff; /* White text for navbar links */
+        }
+        .jumbotron {
+            background-color: #fff; /* White background for main content */
+        }
+        .latest-news {
+            background-color: #d3ffd3; /* Light green background for the left column */
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Welcome to Levis</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Apex</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Support</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Docs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Donate</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-4 latest-news">
+                    <h2>Latest News</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod, ex eu dignissim interdum.</p>
+                    <div class="subscribe-box">
+                        <h4>Subscribe to Our Newsletter</h4>
+                        <form>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Enter your email">
+                            </div>
+                            <button type="submit" class="btn btn-success">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <s:callouts>
+
+                    <h1><s:page_title></h1>
+

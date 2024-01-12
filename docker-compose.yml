@@ -1,0 +1,76 @@
+version: '3.7'
+
+services:
+
+  levis:
+    build:
+      context: .
+      dockerfile: ./config/docker/Dockerfile
+    image: levia-1.0
+    container_name: levis
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: levis
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./config/docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    links:
+      - mysql
+    depends_on:
+      - nginx
+      - mysql
+    networks:
+      - levis-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/var/www
+      - ./config/docker/nginx:/etc/nginx/conf.d
+      - nginxlogs:/var/log/nginx
+    networks:
+      - levis-network
+
+  mysql:
+    image: mysql:8.0
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: levis
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: levis
+      MYSQL_PASSWORD: password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./config/docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
+    networks:
+      - levis-network
+
+#Docker Networks
+networks:
+  levis-network:
+    driver: bridge
+
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local
+  nginxlogs:
+    driver: local
+
+

@@ -1,0 +1,79 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types = 1);
+
+
+/**
+ * Define the namespace all CLI commands are found within.
+ */
+$cmd_namespace = [
+    "App\\Console",
+    "Levis\\App\\Cli"
+];
+
+/**
+ * Define shortcuts, key being the shortcut and 
+ * value being the full command.
+ */
+$shortcuts = [];
+
+/**
+ * When typo is assumed and command found, whether 
+ * to skip manual confirmation to run command.
+ */
+$autoconfirm_typos = false;
+
+/**
+ * Check the cwd and ensure we're currently inside an Composer installation 
+ * directory in case we're executing from the environment path.
+ */
+$cwd = checkCwd();
+
+/**
+ * Load up composer, so we have access to all of our goodies. 
+ */
+require_once($cwd . '/vendor/autoload.php');
+
+/**
+ * Create our application, and get ready to handle the request.
+ */
+$app = new \Levis\App\App();
+$cntr = $app->getContainer();
+
+// Run, and exit
+$cli = $cntr->make(\Apex\Cli\Cli::class, [
+    'cmd_namespace' => $cmd_namespace,
+    'autoconfirm_typos' => $autoconfirm_typos
+]);
+$cli->addShortcuts($shortcuts);
+$cli->run();
+
+// Exit
+exit(0);
+
+/**
+ * Check the CWD
+ *
+ * Get the current cwd, checks to ensure its a correct Apex installation.  Used 
+ * when the 'apex' phar archive is located within the environment path.
+ */
+function checkCwd()
+{
+
+    // Get directory
+    $dir = getcwd();
+    if (!file_exists("$dir/boot/container.php")) {
+        $dir = __DIR__;
+    }
+
+    // Check directory
+    //if (!file_exists("$dir/boot/container.php")) { die("Not in an Apex installation directory."); }
+    if (!file_exists("$dir/vendor/autoload.php")) { die("Composer packages have not yet been installed.  Please first install with:  composer update"); }
+
+    // Return
+    return $dir;
+
+}
+
+
+
