@@ -17,7 +17,6 @@ services:
     volumes:
       - ./:/var/www
       - ./config/docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
-      - ./plog:/var/log/php-fpm
     links:
       - mysql
     depends_on:
