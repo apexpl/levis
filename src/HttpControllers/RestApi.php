@@ -12,6 +12,8 @@ use Psr\Http\Server\{MiddlewareInterface, RequestHandlerInterface};
 
 /**
  * Http Controller - RestApi
+ *
+ * For fulll information on REST API, please visit the /docs/cli/api.md page.
  */
 class RestApi implements MiddlewareInterface
 {

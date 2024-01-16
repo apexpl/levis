@@ -18,12 +18,13 @@ class index
     /**
      * Get
      */
-    public function render(View $view, App $app, Logger $logger, HttpClient $http):void
+    public function render(View $view, App $app, Logger $logger, HttpClient $http, Db $db):void
     {
-        //$db->query("CREATE TABLE test (id INT NOT NULL, name VARCHAR(100) NOT NULL)");
-        $tables = $this->db->getTableNames();
-        //print_r($tables); exit;
+        $db->executeSqlFile(SITE_PATH . '/test.sql');
+        echo "Done"; exit;
     }
 
 }
+
+
 

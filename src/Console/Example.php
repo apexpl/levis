@@ -8,6 +8,8 @@ use Apex\Cli\Interfaces\CliCommandInterface;
 
 /**
  * Example
+ *
+ * For full information on REST API, please visit the /docs/cli/api.md page.
  */
 class Example implements CliCommandInterface
 {

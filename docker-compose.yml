@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: ./config/docker/Dockerfile
-    image: levia-1.0
+    image: levis-1.0
     container_name: levis
     restart: unless-stopped
     tty: true
@@ -17,6 +17,7 @@ services:
     volumes:
       - ./:/var/www
       - ./config/docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./plog:/var/log/php-fpm
     links:
       - mysql
     depends_on:
@@ -31,11 +32,10 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "8080:8080"
+      - "80:80"
     volumes:
       - ./:/var/www
       - ./config/docker/nginx:/etc/nginx/conf.d
-      - nginxlogs:/var/log/nginx
     networks:
       - levis-network
 
@@ -65,12 +65,9 @@ networks:
   levis-network:
     driver: bridge
 
-
 #Volumes
 volumes:
   dbdata:
-    driver: local
-  nginxlogs:
     driver: local
 
 

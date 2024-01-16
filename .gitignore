@@ -1,0 +1,8 @@
+composer.lock
+vendor/
+logs/app.log
+logs/debug.log
+logs/error.log
+db.sqlite
+.phpunit.result.cache
+

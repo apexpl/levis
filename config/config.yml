@@ -8,13 +8,13 @@ database:
     driver: sqlite       # Can be: mysql, postgresql, sqlite
     dbname: ~/db.sqlite
 
-# Example mySQL
+# Example mySQL - if using docker, credentials already correct
 #database:
 #    driver: mysql
 #    dbname: levis
-#    user: myuser
-#    password: secret_pass
-#    host: localhost
+#    user: levis
+#    password: password
+#    host: mysql
 #    port: 3306
 
 ####################

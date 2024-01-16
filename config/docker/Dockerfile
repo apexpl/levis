@@ -1,18 +1,24 @@
 
-FROM php:8.2-fpm
+FROM php:8.1-fpm
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
-    locales \ 
+    locales \
     curl \
-    default-mysql-client
+    default-mysql-client \
+    libsqlite3-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install extensions
-RUN docker-php-ext-install pdo pdo_mysql sqlite3
+RUN docker-php-ext-install sockets pdo pdo_mysql pdo_sqlite
+
+# Install php-redis
+RUN pecl install -o -f redis && \ 
+    rm -rf /tmp/pear && \ 
+    docker-php-ext-enable redis
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
@@ -25,7 +31,7 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 WORKDIR /var/www
 
 # Copy existing application directory contents
-COPY levis /usr/bin/
+COPY apex /usr/bin/
 COPY . /var/www
 COPY --chown=www:www . /var/www
 
@@ -35,6 +41,6 @@ USER www
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD bash -c "composer update -n --prefer-dist && php-fpm"
-
+#CMD ["php-fpm"]
 
 
