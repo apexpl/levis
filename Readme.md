@@ -3,7 +3,7 @@
 
 Small, lightweight PHP framework allowing you to quickly and efficiently develop your operations.  
 
-If you find Levis to be too lightweight or missing desired functionality, please take a look at Apex at https://apexpl.io/ which is a larger and more feature rich version of Levis and also comes with a built-in repository network, CI pipeline, staging environments, ability to earn money, and more.
+If you find Levis to be too lightweight or missing desired functionality, please take a look at Apex at https://apexpl.io/ which is a larger and more feature rich version.
 
 ## Installation
 
