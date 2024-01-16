@@ -31,7 +31,7 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 WORKDIR /var/www
 
 # Copy existing application directory contents
-COPY apex /usr/bin/
+COPY levis /usr/bin/
 COPY . /var/www
 COPY --chown=www:www . /var/www
 
