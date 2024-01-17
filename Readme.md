@@ -31,7 +31,7 @@ cd levis
 docker-compose up -d
 ~~~
 
-Upon successfl installation via Docker, the site will be available at http://127.0.0.1/.
+Upon successful installation via Docker, the site will be available at http://127.0.0.1/.
 
 
 ## Table of Contents
@@ -53,6 +53,6 @@ Upon successfl installation via Docker, the site will be available at http://127
 
 ## Contact
 
-For any enqueries, please contact me via e-mail at matt@apexpl.io.
+For any enquiries, please contact me via e-mail at matt@apexpl.io.
 
 
