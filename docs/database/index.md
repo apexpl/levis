@@ -12,11 +12,11 @@ To continue, click on one of the below links:
     2. [Prepared Statements](db/placeholders.md)
     3. [Function Reference List](../classes/svc/db/index.md)
 2. [Models](models/index.md)
-    1. [Example Model](example.md)
-    2. [Generate Models](generate.md)
-    3. [Insert Records](insert.md)
-    4. [Retrieve Records](select.md)
-    5. [Update and Delete Records](update.md)
+    1. [Example Model](models/example.md)
+    2. [Generate Models](models/generate.md)
+    3. [Insert Records](models/insert.md)
+    4. [Retrieve Records](models/select.md)
+    5. [Update and Delete Records](models/update.md)
 3. [Tips &amp; Tricks](tips.md)
 
 
