@@ -5,7 +5,7 @@ FROM php:8.1-fpm
 RUN apt-get update && apt-get install -y \
     build-essential \
     locales \
-    curl \
+    git \
     default-mysql-client \
     libsqlite3-dev
 
@@ -17,7 +17,7 @@ RUN docker-php-ext-install sockets pdo pdo_mysql pdo_sqlite
 
 # Install php-redis
 RUN pecl install -o -f redis && \ 
-    rm -rf /tmp/pear && \ 
+    rm -rf /tmp/pear && \
     docker-php-ext-enable redis
 
 # Install composer

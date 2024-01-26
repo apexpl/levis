@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Views;
 
-use Levis\Svc\{App, View, Db, Logger, HttpClient};
+use Levis\Svc\{App, View};
 
 
 /**
@@ -18,10 +18,9 @@ class index
     /**
      * Get
      */
-    public function render(View $view, App $app, Logger $logger, HttpClient $http, Db $db):void
+    public function render(View $view, App $app):void
     {
-        $db->executeSqlFile(SITE_PATH . '/test.sql');
-        echo "Done"; exit;
+
     }
 
 }

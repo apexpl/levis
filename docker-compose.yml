@@ -16,14 +16,13 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
-      - ./config/docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     links:
       - mysql
     depends_on:
       - nginx
       - mysql
     networks:
-      - levis-network
+      - apex-network
 
   nginx:
     image: nginx:alpine
@@ -32,11 +31,12 @@ services:
     tty: true
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./:/var/www
       - ./config/docker/nginx:/etc/nginx/conf.d
     networks:
-      - levis-network
+      - apex-network
 
   mysql:
     image: mysql:8.0
@@ -57,12 +57,13 @@ services:
       - dbdata:/var/lib/mysql
       - ./config/docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
     networks:
-      - levis-network
+      - apex-network
 
 #Docker Networks
 networks:
-  levis-network:
+  apex-network:
     driver: bridge
+
 
 #Volumes
 volumes:
