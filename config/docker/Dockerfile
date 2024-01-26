@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     locales \
     git \
+    libzip-dev \
     default-mysql-client \
     libsqlite3-dev
 
@@ -13,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install extensions
-RUN docker-php-ext-install sockets pdo pdo_mysql pdo_sqlite
+RUN docker-php-ext-install sockets zip pdo pdo_mysql pdo_sqlite
 
 # Install php-redis
 RUN pecl install -o -f redis && \ 
